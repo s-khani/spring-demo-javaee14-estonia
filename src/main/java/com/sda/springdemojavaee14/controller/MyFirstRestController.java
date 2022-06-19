@@ -17,6 +17,7 @@ public class MyFirstRestController {
 
 
     //dependency injection providing required collaborators/dependencies by Spring
+    //@Autowired
     public MyFirstRestController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
