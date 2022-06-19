@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class GreetingService {
     public String makeSomeGreetingToUser(String name){
 
-        String result = "Welcome to Sprig class" + name;
+        String result = "Welcome to Sprig class " + name;
         log.info(result);
         return result;
 
