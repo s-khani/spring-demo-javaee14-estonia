@@ -25,6 +25,13 @@ public class MyFirstRestController {
     //@GetMapping means
     // - code of the method will be run when we hit endpoint
     //we use exact HTTP method
+    //example query link from google:
+    //https://www.google.com/search?q=Estonia
+    //server: application(endpoint) on the server
+    // ? : query separator
+    // q=Estonia, q: parameter name, Estonia i value for q parameter
+    // & is used if more parametersare coming
+    // /greeting?name=Samaneh@username=sami
     @GetMapping("/say-hello")
     public String hello() {
         // TODO: explain logger level
@@ -34,8 +41,9 @@ public class MyFirstRestController {
     }
 
     @GetMapping("/greeting")
-    public String greetUser(){
-        log.info("greetUser");
-        return greetingService.makeSomeGreetingToUser("Samaneh");
+    public String greetUser(String name,String surname){
+
+        log.info("greetUser called with params: name : [{}], surname: [{}},",name,surname); //String.format("name:%$, name")
+        return greetingService.makeSomeGreetingToUser(name + " " + surname);
     }
 }
