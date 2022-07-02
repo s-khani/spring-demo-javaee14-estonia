@@ -31,7 +31,7 @@ public class MyFirstRestController {
     //server: application(endpoint) on the server
     // ? : query separator
     // q=Estonia, q: parameter name, Estonia i value for q parameter
-    // & is used if more parametersare coming
+    // & is used if more parameters are coming
     // /greeting?name=Samaneh@username=sami
     @GetMapping("/say-hello")
     public String hello() {
