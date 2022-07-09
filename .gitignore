@@ -1,3 +1,5 @@
+.DS_Store
+src/main/java/com/sda/.DS_Store
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
