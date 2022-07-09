@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
@@ -12,8 +13,11 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="Reservations")
 public class Reservation {
-
+    @Id // primary key
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     Long tableNumber;
