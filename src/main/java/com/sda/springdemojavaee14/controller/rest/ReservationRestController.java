@@ -5,6 +5,7 @@ import com.sda.springdemojavaee14.entity.Reservation;
 import com.sda.springdemojavaee14.service.ReservationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,10 +25,21 @@ public class ReservationRestController {
 
 
     @GetMapping("/reservations")
-    public List<Reservation> getAllReservation(){
+    public List<Reservation> getAllReservation() {
 
         log.info("getting all Reservations");
         return reservationService.findAllReservation();
 
     }
+
+    @GetMapping("/reservations/{id}")
+
+    public Reservation getReservationById(@PathVariable("id") Long reservationId) {
+
+        log.info("trying to find reservation by id: [{}]", reservationId);
+
+        return reservationService.findReservationById(reservationId);
+
+    }
 }
+

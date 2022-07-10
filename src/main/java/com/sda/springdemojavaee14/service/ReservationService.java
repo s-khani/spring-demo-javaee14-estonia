@@ -24,4 +24,9 @@ public class ReservationService {
 
 
     }
+
+    public Reservation findReservationById(Long reservationId) {
+
+        return null;
+    }
 }
