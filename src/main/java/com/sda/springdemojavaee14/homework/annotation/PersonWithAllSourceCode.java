@@ -60,9 +60,9 @@ public class PersonWithAllSourceCode {
         PersonWithAllSourceCode that = (PersonWithAllSourceCode) o;
         return age == that.age && Objects.equals(name, that.name) && Objects.equals(surname, that.surname);
     }
-   //it is necessary nto collections
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, surname, age);
-    }
+//   //it is necessary nto collections
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, surname, age);
+//    }
 }
