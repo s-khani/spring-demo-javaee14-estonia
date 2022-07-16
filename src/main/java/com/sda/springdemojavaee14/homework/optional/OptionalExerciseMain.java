@@ -32,7 +32,30 @@ public class OptionalExerciseMain {
         //Lambda is content of missing interface method
         //We don't need argument of lambda because we know which method we implement
         // -> (arrow) is separator of arguments and method body
+        //Lambda is for sending behaviour
+        //we can use lambda only with interfaces with just one abstract method (one to implement)
         maybeNick.ifPresent(nick -> System.out.println("Nick is :" +nick));
+
+        System.out.println("Now more exercises with lambda");
+        Optional<String> hasContent = Optional.of("stupid content");
+        Optional<String> noContent = Optional.empty();
+
+
+
+        System.out.println("Using ifPresentOrElse methods to optional class with lambdas");
+        //first argument we implement accept method
+        hasContent.ifPresentOrElse(s -> System.out.println("Value is present: " + s),
+                ()-> System.out.println("no content"));
+       noContent.ifPresentOrElse(s -> {
+                   System.out.println("has content");
+                   System.out.println("content" + s);
+               },
+               ()->{
+                   System.out.println("no content");
+                   System.out.println("just null");
+
+               }
+               );
 
 
 
