@@ -1,6 +1,7 @@
 package com.sda.springdemojavaee14.homework.optional;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class OptionalExerciseMain {
 
@@ -15,6 +16,26 @@ public class OptionalExerciseMain {
        } else {
            System.out.println("Sorry,no nick");
        }
+
+        if (maybeNick.isEmpty()){
+            System.out.println("Sorry,no nick");
+        } else {
+            System.out.println(maybeNick.get());
+        }
+        System.out.println("Better usage of optional");
+        System.out.println("nick: " + maybeNick.orElse("no nick"));
+        System.out.println("Optional with lambda");
+        maybeNick.ifPresent(new MyNickConsumer());
+        System.out.println("now with my own lambda");
+        //Lambda is about reducing ceremony
+        //Lambda is for shorter way of providing interface implementation
+        //Lambda is content of missing interface method
+        //We don't need argument of lambda because we know which method we implement
+        // -> (arrow) is separator of arguments and method body
+        maybeNick.ifPresent(nick -> System.out.println("Nick is :" +nick));
+
+
+
 
 
     }
@@ -32,7 +53,17 @@ public class OptionalExerciseMain {
     // factory method - is static method which is able to produce instances of classes and have good name
     public static Optional<String> personNickIfPresent() {
 
-        return Optional.empty();
+        return Optional.of("maniek");
 
+    }
+}
+
+class MyNickConsumer implements Consumer<String>{
+
+
+    //generic interface consumer- T will be replaced with String in our class
+    @Override
+    public void accept(String s) {
+        System.out.println("Nick is :" +s);
     }
 }
