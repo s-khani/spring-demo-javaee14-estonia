@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,6 +34,10 @@ public class ReservationRestController {
     public List<Reservation> getAllReservation() {
 
         log.info("getting all Reservations");
+        //not handle exeption will cuase 500
+        /*if (true){
+            throw new NullPointerException("Breaking the server");
+        }*/
         return reservationService.findAllReservation();
 
     }
@@ -55,20 +61,26 @@ public class ReservationRestController {
         //        .body(responseBody);
 
         ResponseEntity<Reservation> result = ResponseEntity.notFound().build();
-        if (responseBody != null){
+        if (responseBody != null) {
             return ResponseEntity.ok(responseBody);
+        } else {
+            // https://danielmiessler.com/images/url-urn-uri-structure-2022.png
+            String path = "/api/reservations/" + reservationId;
+            try {
+                //TODO: fix server URL
+                URI uri = new URI("/api/reservations/" + reservationId);
+                path = uri.getPath();
+            } catch (URISyntaxException e) {
+                log.warn("problems with creating URI", e);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    GenericError.builder()
+                            .responseCode(404)
+                            .timestamp(LocalDateTime.now())
+                            .errorMessage("You provided wrong id: " + reservationId)
+                            .path(path)
+                            .build()
+            );
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                GenericError.builder()
-                        .responseCode(404)
-                        .timestamp(LocalDateTime.now())
-                        .errorMessage("You provided wrong id: " + reservationId)
-                        .path("/reservations/" + reservationId)
-                    //    .path()
-                        .build()
-        );
-
-
     }
 }
-
