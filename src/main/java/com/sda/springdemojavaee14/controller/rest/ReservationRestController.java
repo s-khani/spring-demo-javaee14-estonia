@@ -60,7 +60,7 @@ public class ReservationRestController {
         // return ResponseEntity.status(200)
         //        .body(responseBody);
 
-        ResponseEntity<Reservation> result = ResponseEntity.notFound().build();
+        //ResponseEntity<Reservation> result = ResponseEntity.notFound().build();
         if (responseBody != null) {
             return ResponseEntity.ok(responseBody);
         } else {
